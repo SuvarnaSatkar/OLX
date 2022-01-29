@@ -16,5 +16,7 @@ const db = {};
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 db.usertbl = require('./user.model')(sequelize, Sequelize)
-//db.producttbl = require('./product.model')(sequelize, Sequelize)
-module.exports = db
+db.producttbl = require('./product.model')(sequelize, Sequelize)
+db.usertbl.hasMany(db.producttbl,{foreinKey:'user_id'});
+db.producttbl.belongsTo(db.usertbl);
+module.exports = db;

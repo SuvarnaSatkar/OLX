@@ -20,7 +20,7 @@ module.exports = (sequelize, Sequelize) => {
       Prod_qty: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        unique: true,
+        
       },
            isActive: {
         type: Sequelize.BOOLEAN,

@@ -1,6 +1,7 @@
 const db=require('../model/index.model')
 
 const usertbl=db.usertbl;
+const producttbl=db.producttbl;
 const sequelize=db.sequelize;
 const Sequelize=db.Sequelize;
 const bcrypt=require('bcrypt');
@@ -8,11 +9,12 @@ const req = require('express/lib/request');
 module.exports={
     getallUsers:(req, res, next) =>{
         // usertbl.findAll({})
-        sequelize.query('select * from usertbl',{
-            replacements: [],
-            type: Sequelize.SELECT
-          }).then((data)=>{
-            res.send({error:false, data:data[0]});
+        // sequelize.query('select * from usertbl',{
+        //     replacements: [],
+        //     type: Sequelize.SELECT
+        //   })
+        usertbl.findAll({include:producttbl}).then((data)=>{
+            res.send({error:false, data:data});
         }).catch((err)=>{
             res.send({error:true, err:err});
         })
